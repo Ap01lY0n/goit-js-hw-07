@@ -1,11 +1,6 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import { galleryItems } from './gallery-items.js';
-
+import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
 const imageList = document.querySelector('.gallery');
-const createdImagesMarkup = createImagesMarkup(galleryItems);
-
-imageList.insertAdjacentHTML("beforeend", createdImagesMarkup);
 
 function createImagesMarkup(arr) {
     return arr.map(
@@ -17,10 +12,6 @@ function createImagesMarkup(arr) {
             </li>`
     ).join('');
 }
-
-const lightbox = new SimpleLightbox('.gallery_link', {
-    captionsData: 'alt',
-    captionDelay: 250,
-});
-
+imageList.insertAdjacentHTML('beforeend', createImagesMarkup(galleryItems))
+let gallery = new SimpleLightbox(".gallery a", { captionsData: "alt", captionsDelay: 250})
 console.log(galleryItems);
