@@ -1,17 +1,18 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import { galleryItems } from './gallery-items.js';
 const imageList = document.querySelector('.gallery');
 
 function createImagesMarkup(arr) {
-    return arr.map(
-        ({ preview, original, description }) =>
-            `<li class="gallery_item">
-                <a class="gallery_link" href="${original}">
-                    <img class="gallery_image" src="${preview}" alt="${description}" />
+    return arr.map(({ preview, original, description }) =>
+            `<li class="gallery__item">
+                <a class="gallery__link" href="${original}">
+                    <img class="gallery__image" src="${preview}" alt="${description}" />
                 </a>
             </li>`
     ).join('');
 }
 imageList.insertAdjacentHTML('beforeend', createImagesMarkup(galleryItems))
-let gallery = new SimpleLightbox(".gallery a", { captionsData: "alt", captionsDelay: 250})
-console.log(galleryItems);
+let gallery = new SimpleLightbox(".gallery a", { captionsData: "alt", captionDelay: 250 });
+galleryContainer.addEventListener("click", onGalleryContainerClick);
+function onGalleryContainerClick(evt) {
+    evt.preventDefault();
+  }
