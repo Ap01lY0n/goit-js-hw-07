@@ -12,7 +12,4 @@ function createImagesMarkup(arr) {
 }
 imageList.insertAdjacentHTML('beforeend', createImagesMarkup(galleryItems))
 let gallery = new SimpleLightbox(".gallery a", { captionsData: "alt", captionDelay: 250 });
-galleryContainer.addEventListener("click", onGalleryContainerClick);
-function onGalleryContainerClick(evt) {
-    evt.preventDefault();
-  }
+

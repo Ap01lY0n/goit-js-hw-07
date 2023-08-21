@@ -16,14 +16,22 @@ function createImagesMarkup(arr) {
             </li>`
     ).join('');
 }
-
 function onClickModalImage(event) {
     event.preventDefault();
-    window.addEventListener('keydown', onEscClick);
     
+    if (!event.target.classList.contains('gallery__image')) {
+        return; // If the click was not on an image, do nothing
+    }
+
     const imgOriginalEl = event.target.dataset.source;
-    const instance = basicLightbox.create(`<img src="${imgOriginalEl}">`);
-    instance.show();
+    if (!imgOriginalEl) {
+        return; // If the image source is missing, do nothing
+    }
+
+    window.addEventListener('keydown', onEscClick);
+
+    const modalInstance = basicLightbox.create(`<img src="${imgOriginalEl}">`);
+    modalInstance.show();
 }
 
 function onEscClick(event) {
@@ -31,10 +39,7 @@ function onEscClick(event) {
         onModalClose();
     }
 }
-
 function onModalClose() {
     window.removeEventListener('keydown', onEscClick);
     basicLightbox.close();
 }
-
-console.log(galleryItems);
